@@ -1,0 +1,37 @@
+{% extends "gallery/management/base.html" %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Upload billeder' 'gallery_upload_images' %}
+{% endblock %}
+
+{% block extraheader %}
+<link href="{{ MEDIA_URL }}uploadify/example/css/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{ MEDIA_URL }}uploadify/example/scripts/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}uploadify/example/scripts/swfobject.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}uploadify/example/scripts/jquery.uploadify.v2.1.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#uploadify").uploadify({
+		'uploader'       : '{{ MEDIA_URL }}/uploadify/uploadify.swf',
+		'script'         : '{% url gallery_upload_images_callback collection.pk photographer.pk %}',
+		'cancelImg'      : 'cancel.png',
+		'folder'         : 'uploads',
+		'queueID'        : 'fileQueue',
+		'auto'           : true,
+		'multi'          : true
+	});
+});
+</script>
+{% endblock %}
+
+{% block contenthead %}Upload billeder{% endblock %}
+
+{% block content %}
+
+<div id="fileQueue"></div>
+<input type="file" name="uploadify" id="uploadify" />
+<p><a href="javascript:jQuery('#uploadify').uploadifyClearQueue()">Cancel All Uploads</a></p>
+{% endblock %}

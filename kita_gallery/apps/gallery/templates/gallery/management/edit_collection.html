@@ -1,0 +1,22 @@
+{% extends "gallery/management/base.html" %}
+{% load uni_form_tags %}
+
+{% block extraheader %}
+{% include "form_includes.html" %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Rediger event' 'gallery_edit_collection' collection.pk %}
+{% endblock %}
+
+{% block contenthead %}Rediger event{% endblock %}
+
+{% block content %}
+
+{% with form.helper as helper %}
+    {% uni_form form helper %}
+{% endwith %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "gallery/view_collection.html" %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb breadcrumb 'gallery_view_picture' picture.pk %}
+{% endblock %}
+
+{% block pageControls %}
+<ul>
+    <li><a href="{% url gallery_edit_picture picture.pk %}">Rediger</a>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="collection-images-controls" id="images">
+	{% if prev_picture %}
+	<a href="{% url gallery_view_picture prev_picture %}#images" class="controls-prev">&laquo; Forring</a>
+	{% else %}
+	<span class="controls-prev">&laquo; Forring</span>
+	{% endif %}
+
+	<span>billede {{picture_position}} ud af {{picture_count}}</span>
+
+	{% if next_picture %}
+	<a class="controls-next" href="{% url gallery_view_picture next_picture %}#images">Næste &raquo;</a>
+	{% else %}
+	<span class="controls-next">Næste &raquo;</span>
+	{% endif %}
+</div>
+
+<div id="collection-image">
+	<a href="{% if next_picture %}{% url gallery_view_picture next_picture %}#images{% else %}#{% endif %}">
+		<img src="{{picture.original.thumbnail}}" />
+	</a>
+
+	<div>
+	<span id="collection-image-caption">{{picture.caption}}</span>
+	<span id="collection-image-photographer">Fotograf: {{picture.photographer.name}}</span>
+	</div>
+</div>
+
+{% endblock %}

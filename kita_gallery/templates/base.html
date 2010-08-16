@@ -1,0 +1,72 @@
+{% load copyright %}{% load googleanalytics %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Anime kita - nordjyllands forening for japansk populærkultur</title>
+		<link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/base.css" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/cms.css" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/galleri.css" />
+		{% block extraheader %}{% endblock %}
+    </head>
+
+<body>
+	<div id="wrapper">
+		<div id="topNavBg"></div>
+		<div id="top">
+			<a href="http://www.anime-kita.dk"><img id="topLogo" src="{{ MEDIA_URL }}graphics/toplogo.png" alt="Anime Kita logo" /></a>
+			<div id="topNavBgFade"></div>
+			<ul id="topNav">
+				<li><a href="http://www.anime-kita.dk/">home</a></li>
+				<li><a href="http://www.anime-kita.dk/forum/">forum</a></li>
+				<li><a class="current" href="http://galleri.anime-kita.dk/">galleri</a></li>
+				<li><a href="http://www.anime-kita.dk/intranet/">intranet</a></li>
+			</ul>
+
+			<div id="topUserNav">
+				<!-- This is why whitespaces inside block elements shouldn't be parsed -->
+				{% if user.is_authenticated %}
+				<a class="floatLeft" href="#">se din profil</a
+				><span class="vertSeperatorTiny">|</span
+				><a href="#">Log ud</a>
+				{% else %}
+				<a class="floatLeft" href="#">Opret Bruger</a
+				><span class="vertSeperatorTiny">|</span
+				><a href="#">Log ind</a>
+				{% endif %}
+			</div>
+
+		</div>
+
+		{% block breadcrumb %}
+			{% load breadcrumb_tags %}
+			{% add_crumb 'anime-kita.dk' 'http://www.anime-kita.dk' %}
+			{% add_crumb 'Galleri' 'http://www.anime-kita.dk/galleri/' %}
+		{% endblock %}
+
+		<div id="topContent">
+			<div id="pageControls">{% block pageControls %}{% endblock %}</div>
+			{% render_breadcrumbs %}
+		</div>
+
+		<div id="mid">
+			{% block contentarea %}{% endblock %}
+		</div>
+
+		<div id="footerFix"></div>
+	</div>
+
+	<div id="footer">
+		<!-- This is why ... -->
+		<span>Anime Kita, {% copyright_time 2007 %} &copy; All rights reserved</span
+		><span class="vertSeperatorMedium">|</span
+		<a href="http://www.anime-kita.dk/om-os/kontakt/">Kontakt</a
+		><span class="vertSeperatorMedium">|</span
+		><a href="http://www.anime-kita.dk/databehandlingspolitik/">Databehandlingspolitik</a>
+	</div>
+
+{% googleanalytics "UA-300839-6" %}
+</body>
+</html>

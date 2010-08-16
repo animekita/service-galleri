@@ -1,0 +1,60 @@
+{% extends "wide-site.html" %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb collection.name 'gallery_view_collection' collection.pk %}
+{% endblock %}
+
+{% block pageControls %}
+<ul>
+    <li><a href="{% url gallery_upload_images %}">Upload</a>
+    <li><a href="{% url gallery_edit_collection collection.pk %}">Rediger</a>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="title">{{collection.name}}</h1>
+
+{% if collection.description or collection.photographers %}
+
+<div id="collection-info-text">
+{% if collection.description %}
+  <p>{{collection.description}}</p>
+{% endif %}
+
+{% if collection.photographers %}
+  <p>Fotografer: {% for photographer in collection.photographers %}<a href="#">Zarsu</a>, {% endfor %}</p>
+{% endif %}
+</div>
+
+{% endif %}
+
+<div class="collection-images-controls" id="images">
+  {% if page.has_previous %}
+  <a href="{% url gallery_view_collection collection.pk page.previous_page_number%}#images" class="controls-prev">&laquo; Forring</a>
+  {% else %}
+  <span class="controls-prev">&laquo; Forring</span>
+  {% endif %}
+
+  <span>side {{page.number}} ud af {{paginator.num_pages}}</span>
+
+  {% if page.has_next %}
+  <a class="controls-next" href="{% url gallery_view_collection collection.pk page.next_page_number %}#images">Næste &raquo;</a>
+  {% else %}
+  <span class="controls-next">Næste &raquo;</span>
+  {% endif %}
+</div>
+
+<div class="collection-images">
+
+{% for picture in page.object_list %}
+<a href="{% url gallery_view_picture picture.pk %}#images">
+  <img src="{{picture.original.extra_thumbnails.small}}" />
+</a>
+{% endfor %}
+
+</div>
+
+{% endblock %}

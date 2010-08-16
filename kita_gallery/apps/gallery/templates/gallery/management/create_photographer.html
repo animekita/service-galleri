@@ -1,0 +1,24 @@
+{% extends "gallery/management/base.html" %}
+{% load uni_form_tags %}
+
+{% block extraheader %}
+{% include "form_includes.html" %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Tilføj fotograf' 'gallery_create_photographer' %}
+{% endblock %}
+
+{% block contenthead %}Tilføj fotograf{% endblock %}
+
+{% block content %}
+
+<p>Når du har oprettet en ny fotograf kan du uploade nye billeder tilknyttet denne.</p>
+
+{% with form.helper as helper %}
+    {% uni_form form helper %}
+{% endwith %}
+
+{% endblock %}

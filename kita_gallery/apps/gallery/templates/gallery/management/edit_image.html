@@ -1,0 +1,22 @@
+{% extends "gallery/management/base.html" %}
+{% load uni_form_tags %}
+
+{% block extraheader %}
+{% include "form_includes.html" %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Rediger billede' 'gallery_edit_picture' picture.pk %}
+{% endblock %}
+
+{% block contenthead %}Rediger billede{% endblock %}
+
+{% block content %}
+
+{% with form.helper as helper %}
+    {% uni_form form helper %}
+{% endwith %}
+
+{% endblock %}

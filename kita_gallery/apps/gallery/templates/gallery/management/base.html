@@ -1,0 +1,19 @@
+{% extends "narrow-site.html" %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Management' %}
+{% endblock %}
+
+{% block navigation %}
+
+<h2>Management</h2>
+
+	<ul class="leftNav">
+		<li><a href="{% url gallery_create_photographer %}">Tilføj fotograf</a></li>
+		<li><a href="{% url gallery_create_collection %}">Tilføj event</a></li>
+		<li><a href="{% url gallery_upload_images %}">Upload billeder</a></li>
+	</ul>
+
+{% endblock %}

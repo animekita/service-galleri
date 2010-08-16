@@ -1,0 +1,24 @@
+{% extends "gallery/management/base.html" %}
+{% load uni_form_tags %}
+
+{% block extraheader %}
+{% include "form_includes.html" %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Tilføj event' 'gallery_create_collection' %}
+{% endblock %}
+
+{% block contenthead %}Tilføj event{% endblock %}
+
+{% block content %}
+
+<p>Når du har oprettet et nyt event kan du uploade nye billeder dertil. Eventet vil først være synligt på hjemmesiden efter det første billede er blevet tilknyttet.</p>
+
+{% with form.helper as helper %}
+    {% uni_form form helper %}
+{% endwith %}
+
+{% endblock %}

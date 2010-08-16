@@ -1,0 +1,30 @@
+{% extends "wide-site.html" %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb 'Se events' 'gallery_create_collection' %}
+{% endblock %}
+
+{% block pageControls %}
+<ul>
+    <li><a href="{% url gallery_create_collection %}">Tilføj event</a>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Galleri</h1>
+
+{% for collection in collections %}
+
+{% if collection.picture_set.all %}
+<div class="collection">
+	<a href="{% url gallery_view_collection collection.pk %}"><img src="{{collection.picture_set.all.0.original.url}}" /></a>
+	<span><a href="{% url gallery_view_collection collection.pk %}">{{collection.name}}</a></span>
+</div>
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}
