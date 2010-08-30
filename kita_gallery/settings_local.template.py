@@ -15,7 +15,7 @@ SAPI_SERVICE_ID = 'gallery'
 SAPI_URL = 'http://alpha.kita.dk:8001'
 
 # Site URL Settings
-SITE_URL = 'http://alpha.kita.dk:8000' # without trailing slash
+SITE_URL = 'http://alpha.kita.dk:8000/' # with trailing slash
 MEDIA_URL = 'http://alpha.kita.dk:8000/static/' # with trailing slash
 IMAGES_URL = 'http://alpha.kita.dk:8000/static/gallery-images/' # with trailing slash
 ADMIN_MEDIA_PREFIX = '/media/' # with trailing slash
