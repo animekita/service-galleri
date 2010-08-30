@@ -43,7 +43,7 @@ SITE_URL = 'http://alpha.kita.dk:8000'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/semadk/src/kita/static/trunk/'
+MEDIA_ROOT = '/home/semadk/src/kita-svn/static/trunk/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -68,6 +68,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'selvbetjening-sso.middleware.SelvbetjeningUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -107,3 +108,11 @@ INSTALLED_APPS = (
 
     'kita_gallery.apps.gallery',
 )
+
+AUTHENTICATION_BACKENDS = ('kita_gallery.apps.gallery.backends.PhotographerPermissionBackend',
+                           'selvbetjening-sso.backends.SelvbetjeningBackend',
+                           'django.contrib.auth.backends.ModelBackend')
+
+SAPI_AUTH_TOKEN_KEY = 'kita_auth_token'
+SAPI_SERVICE_ID = 'test'
+SAPI_URL = 'http://alpha.kita.dk:8001'

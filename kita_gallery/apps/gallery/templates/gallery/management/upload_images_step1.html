@@ -1,17 +1,20 @@
-{% extends "gallery/management/base.html" %}
+{% extends "narrow-site.html" %}
 {% load uni_form_tags %}
 
 {% block extraheader %}
 {% include "form_includes.html" %}
 {% endblock %}
 
+{% url gallery_upload_images collection_slug=collection.slug as current_url %}
+
 {% block breadcrumb %}
     {{ block.super }}
     {% load breadcrumb_tags %}
-    {% add_crumb 'Upload billeder' 'gallery_upload_images' %}
+    {% add_crumb collection.name 'gallery_view_collection' collection.slug %}
+    {% add_crumb 'Upload billeder' 'gallery_upload_images' collection.slug %}
 {% endblock %}
 
-{% block contenthead %}Upload billeder{% endblock %}
+{% block contenthead %}Vælg fotograf{% endblock %}
 
 {% block content %}
 

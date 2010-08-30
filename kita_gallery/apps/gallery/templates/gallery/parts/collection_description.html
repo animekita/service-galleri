@@ -1,0 +1,13 @@
+{% if collection.description or collection.photographers %}
+
+<div id="collection-info-text">
+{% if collection.description %}
+  <p>{{collection.description}}</p>
+{% endif %}
+
+{% if collection.photographers %}
+  <p>Fotografer: {% for photographer in collection.photographers %}<a href="{% url gallery_view_photographer photographer.slug %}">Zarsu</a>, {% endfor %}</p>
+{% endif %}
+</div>
+
+{% endif %}

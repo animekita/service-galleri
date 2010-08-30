@@ -3,9 +3,22 @@ from django.contrib.auth.models import User
 
 from sorl.thumbnail.fields import ImageWithThumbnailsField
 
+class CollectionGroup(models.Model):
+    name = models.CharField(max_length=255)
+    order = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
+
 class Collection(models.Model):
+    slug = models.SlugField(unique=True)
+
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+
+    date = models.DateField()
+
+    group = models.ForeignKey(CollectionGroup)
 
     @property
     def photographers(self):
@@ -15,8 +28,11 @@ class Collection(models.Model):
         return self.name
 
 class Photographer(models.Model):
+    slug = models.SlugField(unique=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+
+    user = models.ForeignKey(User, blank=True, null=True)
 
     def __unicode__(self):
         return self.name

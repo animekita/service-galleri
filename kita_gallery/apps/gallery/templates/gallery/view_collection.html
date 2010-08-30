@@ -3,57 +3,40 @@
 {% block breadcrumb %}
     {{ block.super }}
     {% load breadcrumb_tags %}
-    {% add_crumb collection.name 'gallery_view_collection' collection.pk %}
+    {% add_crumb collection.name 'gallery_view_collection' collection.slug %}
 {% endblock %}
 
 {% block pageControls %}
 <ul>
-    <li><a href="{% url gallery_upload_images %}">Upload</a>
-    <li><a href="{% url gallery_edit_collection collection.pk %}">Rediger</a>
+    {% if pems.gallery.add_picture %}
+    <li><a href="{% url gallery_upload_images collection_slug=collection.slug %}">Upload billeder</a></li>
+    {% endif %}
+
+    {% if pems.gallery.change_collection %}
+    <li><a href="{% url gallery_edit_collection collection.pk %}">Rediger</a></li>
+    {% endif %}
 </ul>
 {% endblock %}
 
+{% block contenthead %}<h1 class="title">{{collection.name}}</h1>{% endblock %}
+
 {% block content %}
 
-<h1 class="title">{{collection.name}}</h1>
+{% include "gallery/parts/collection_description.html" %}
 
-{% if collection.description or collection.photographers %}
+{% url gallery_view_collection collection.slug page.previous_page_number as url_previous %}
+{% url gallery_view_collection collection.slug page.next_page_number as url_next %}
 
-<div id="collection-info-text">
-{% if collection.description %}
-  <p>{{collection.description}}</p>
-{% endif %}
+{% include "gallery/parts/controls.html" %}
 
-{% if collection.photographers %}
-  <p>Fotografer: {% for photographer in collection.photographers %}<a href="#">Zarsu</a>, {% endfor %}</p>
-{% endif %}
-</div>
-
-{% endif %}
-
-<div class="collection-images-controls" id="images">
-  {% if page.has_previous %}
-  <a href="{% url gallery_view_collection collection.pk page.previous_page_number%}#images" class="controls-prev">&laquo; Forring</a>
-  {% else %}
-  <span class="controls-prev">&laquo; Forring</span>
-  {% endif %}
-
-  <span>side {{page.number}} ud af {{paginator.num_pages}}</span>
-
-  {% if page.has_next %}
-  <a class="controls-next" href="{% url gallery_view_collection collection.pk page.next_page_number %}#images">Næste &raquo;</a>
-  {% else %}
-  <span class="controls-next">Næste &raquo;</span>
-  {% endif %}
-</div>
 
 <div class="collection-images">
 
-{% for picture in page.object_list %}
-<a href="{% url gallery_view_picture picture.pk %}#images">
-  <img src="{{picture.original.extra_thumbnails.small}}" />
-</a>
-{% endfor %}
+    {% for picture in page.object_list %}
+    <a href="{% url gallery_view_collection_picture picture_id=picture.pk collection_slug=collection.slug %}#images">
+      <img src="{{picture.original.extra_thumbnails.small}}" />
+    </a>
+    {% endfor %}
 
 </div>
 

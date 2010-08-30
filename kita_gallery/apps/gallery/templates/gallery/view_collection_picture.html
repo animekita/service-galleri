@@ -1,0 +1,24 @@
+{% extends "gallery/view_collection.html" %}
+
+{% url gallery_view_collection_picture picture_id=picture.pk collection_slug=collection.slug as picture_url %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb breadcrumb picture_url %}
+{% endblock %}
+
+{% block pageControls %}{% endblock %}
+
+{% block contenthead %}<h1>{{picture.collection.name}}</h1>{% endblock %}
+
+{% block content %}
+
+{% url gallery_view_collection_picture picture_id=prev_picture collection_slug=collection.slug as url_previous %}
+{% url gallery_view_collection_picture picture_id=next_picture collection_slug=collection.slug as url_next %}
+
+{% include "gallery/parts/image_controls.html" %}
+
+{% include "gallery/parts/image.html" %}
+
+{% endblock %}

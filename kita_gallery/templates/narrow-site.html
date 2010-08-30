@@ -9,14 +9,7 @@
 <div id="midContent">
 	<h1 class="title">{% block contenthead %}{% endblock %}</h1>
 
-	{% if messages or session_message %}
-		{% for message in messages %}
-		<p class="notice">{{ message }}</p>
-		{% endfor %}
-		{% if session_message %}
-		<p class="notice">{{session_message}}</p>
-		{% endif %}
-	{% endif %}
+	{% include "parts/messages.html" %}
 
 	{% block content %}{% endblock %}
 </div>

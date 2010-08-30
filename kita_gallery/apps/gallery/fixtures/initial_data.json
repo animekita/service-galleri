@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "gallery.collectiongroup", "fields": {"name": "Kita Træf", "order": 10}}, {"pk": 2, "model": "gallery.collectiongroup", "fields": {"name": "Chibi Arrangementer", "order": 20}}, {"pk": 3, "model": "gallery.collectiongroup", "fields": {"name": "Andre Arrangementer", "order": 30}}]

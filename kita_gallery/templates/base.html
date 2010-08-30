@@ -28,7 +28,7 @@
 			<div id="topUserNav">
 				<!-- This is why whitespaces inside block elements shouldn't be parsed -->
 				{% if user.is_authenticated %}
-				<a class="floatLeft" href="#">se din profil</a
+				<a class="floatLeft" href="http://www.anime-kita.dk/selvbetjening/profil/">se din profil</a
 				><span class="vertSeperatorTiny">|</span
 				><a href="#">Log ud</a>
 				{% else %}
@@ -43,7 +43,7 @@
 		{% block breadcrumb %}
 			{% load breadcrumb_tags %}
 			{% add_crumb 'anime-kita.dk' 'http://www.anime-kita.dk' %}
-			{% add_crumb 'Galleri' 'http://www.anime-kita.dk/galleri/' %}
+			{% add_crumb 'Galleri' SITE_URL %}
 		{% endblock %}
 
 		<div id="topContent">

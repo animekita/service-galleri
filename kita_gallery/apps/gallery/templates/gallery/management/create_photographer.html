@@ -1,4 +1,4 @@
-{% extends "gallery/management/base.html" %}
+{% extends "narrow-site.html" %}
 {% load uni_form_tags %}
 
 {% block extraheader %}
@@ -15,7 +15,7 @@
 
 {% block content %}
 
-<p>Når du har oprettet en ny fotograf kan du uploade nye billeder tilknyttet denne.</p>
+<p>Tilknyttes denne fotograf en bruger får denne bruger tilladelse til at uploade billeder til siden samt redigerer sit eget fotograf navn og beskrivelse.</p>
 
 {% with form.helper as helper %}
     {% uni_form form helper %}

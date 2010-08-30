@@ -1,9 +1,9 @@
-{% extends "gallery/management/base.html" %}
+{% extends "gallery/management/upload_images_step1.html" %}
 
 {% block breadcrumb %}
     {{ block.super }}
     {% load breadcrumb_tags %}
-    {% add_crumb 'Upload billeder' 'gallery_upload_images' %}
+    {% add_crumb photographer.name %}
 {% endblock %}
 
 {% block extraheader %}
@@ -16,12 +16,13 @@
 $(document).ready(function() {
 	$("#uploadify").uploadify({
 		'uploader'       : '{{ MEDIA_URL }}/uploadify/uploadify.swf',
-		'script'         : '{% url gallery_upload_images_callback collection.pk photographer.pk %}',
-		'cancelImg'      : 'cancel.png',
+		'script'         : '{% url gallery_upload_images_callback collection.slug photographer.slug %}',
+		'cancelImg'      : '{{ MEDIA_URL }}/uploadify/cancel.png',
 		'folder'         : 'uploads',
 		'queueID'        : 'fileQueue',
 		'auto'           : true,
-		'multi'          : true
+		'multi'          : true,
+		'scriptData'     : {'sessionid': '{{sessionid}}'}
 	});
 });
 </script>
@@ -30,6 +31,12 @@ $(document).ready(function() {
 {% block contenthead %}Upload billeder{% endblock %}
 
 {% block content %}
+
+<p class="warning">Du skal have flash installeret for at kunne uploade billeder til galleriet.</p>
+
+<p>Du er nu ved at uploade billeder til arrangementet <b>{{collection.name}}</b>. Billederne vil blive markeret som at være taget af fotografen <b>{{photographer.name}}</b>.</p>
+
+<p><a href="{% url gallery_view_collection collection.slug %}">Tryk her for at komme tilbage til arrangementet.</a></p>
 
 <div id="fileQueue"></div>
 <input type="file" name="uploadify" id="uploadify" />

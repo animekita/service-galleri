@@ -1,4 +1,4 @@
-{% extends "gallery/management/base.html" %}
+{% extends "narrow-site.html" %}
 {% load uni_form_tags %}
 
 {% block extraheader %}
@@ -8,10 +8,12 @@
 {% block breadcrumb %}
     {{ block.super }}
     {% load breadcrumb_tags %}
-    {% add_crumb 'Rediger billede' 'gallery_edit_picture' picture.pk %}
+    {% add_crumb "Fotografer" %}
+    {% add_crumb photographer.name 'gallery_view_photographer' photographer.slug %}
+    {% add_crumb 'Rediger' 'gallery_edit_photographer' photographer.slug %}
 {% endblock %}
 
-{% block contenthead %}Rediger billede{% endblock %}
+{% block contenthead %}Rediger fotograf{% endblock %}
 
 {% block content %}
 

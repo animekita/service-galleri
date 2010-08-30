@@ -1,0 +1,41 @@
+{% extends "wide-site.html" %}
+{% load object_permissions %}
+
+{% block breadcrumb %}
+    {{ block.super }}
+    {% load breadcrumb_tags %}
+    {% add_crumb "Fotografer" %}
+    {% add_crumb collection.name 'gallery_view_photographer' collection.slug %}
+{% endblock %}
+
+{% block pageControls %}
+{% has_obj_perm user "gallery.change_photographer" collection as can_change_photographer %}
+<ul>
+    {% if can_change_photographer %}
+    <li><a href="{% url gallery_edit_photographer collection.slug %}">Rediger</a></li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+{% block contenthead %}<h1 class="title">{{collection.name}}</h1>{% endblock %}
+
+{% block content %}
+
+{% include "gallery/parts/collection_description.html" %}
+
+{% url gallery_view_photographer collection.slug page.previous_page_number as url_previous %}
+{% url gallery_view_photographer collection.slug page.next_page_number as url_next %}
+
+{% include "gallery/parts/controls.html" %}
+
+<div class="collection-images">
+
+    {% for picture in page.object_list %}
+    <a href="{% url gallery_view_photographer_picture picture_id=picture.pk collection_slug=collection.slug %}#images">
+      <img src="{{picture.original.extra_thumbnails.small}}" />
+    </a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

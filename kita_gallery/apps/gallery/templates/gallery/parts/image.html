@@ -1,0 +1,10 @@
+<div id="collection-image">
+	<a href="{% if next_picture %}{{url_next}}#images{% else %}#{% endif %}">
+		<img src="{{picture.original.thumbnail}}" />
+	</a>
+
+	<div>
+	<span id="collection-image-caption">{{picture.caption}}</span>
+	<span id="collection-image-photographer">Fotograf: <a href="{% url gallery_view_photographer picture.photographer.slug %}">{{picture.photographer.name}}</a></span>
+	</div>
+</div>

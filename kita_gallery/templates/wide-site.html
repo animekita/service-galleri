@@ -3,6 +3,10 @@
 {% block contentarea %}
 
 <div id="onlyContent">
+	{% block contenthead %}{% endblock %}
+
+	{% include "parts/messages.html" %}
+
 	{% block content %}{% endblock %}
 </div>
 
