@@ -7,7 +7,7 @@ TIME_ZONE = 'Europe/Copenhagen'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'da-dk'
 
 SITE_ID = 1
 
@@ -29,7 +29,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'selvbetjening-sso.middleware.SelvbetjeningUserMiddleware',
+
+    'selv_sso.middleware.SelvbetjeningUserMiddleware',
+
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -68,7 +70,7 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = ('kita_gallery.apps.gallery.backends.PhotographerPermissionBackend',
-                           'selvbetjening-sso.backends.SelvbetjeningBackend',
+                           'selv_sso.backends.SelvbetjeningBackend',
                            'django.contrib.auth.backends.ModelBackend')
 
 # other settings

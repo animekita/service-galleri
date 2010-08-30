@@ -6,7 +6,11 @@
 {% endif %}
 
 {% if collection.photographers %}
-  <p>Fotografer: {% for photographer in collection.photographers %}<a href="{% url gallery_view_photographer photographer.slug %}">Zarsu</a>, {% endfor %}</p>
+  <p>{% ifequal collection.photographers.count 1 %}Fotograf: {% else %}Fotografer: {% endifequal %}
+  {% for photographer in collection.photographers %}
+    <a href="{% url gallery_view_photographer photographer.slug %}">{{photographer.name}}</a>{% if not forloop.last %}, {% endif %}
+  {% endfor %}
+  </p>
 {% endif %}
 </div>
 

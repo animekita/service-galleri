@@ -25,11 +25,6 @@ def permission_denied(request):
     tup = login_url, REDIRECT_FIELD_NAME, path
     return HttpResponseRedirect('%s?%s=%s' % tup)
 
-def can_upload_as(user, photographer):
-    photographers = can_upload(user)
-
-    return photographers is not None and photographer in photographers
-
 def can_upload(user):
     if user.has_perm('gallery.add_picture'):
         return Photographer.objects.all()
@@ -37,6 +32,11 @@ def can_upload(user):
         return Photographer.objects.filter(user=user)
     else:
         return None
+
+def can_upload_as(user, photographer):
+    photographers = can_upload(user)
+
+    return photographers is not None and photographer in photographers
 
 @login_required
 @permission_required('gallery.add_collection')

@@ -8,11 +8,11 @@
 
 {% block pageControls %}
 <ul>
-	{% if pems.gallery.add_collection %}
+	{% if perms.gallery.add_collection %}
     <li><a href="{% url gallery_create_collection %}">Tilføj Arrangement</a>
 	{% endif %}
 
-	{% if pems.gallery.add_photographer %}
+	{% if perms.gallery.add_photographer %}
 	<li><a href="{% url gallery_create_photographer %}">Tilføj Fotograf</a>
 	{% endif %}
 </ul>

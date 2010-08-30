@@ -1,4 +1,5 @@
 {% extends "wide-site.html" %}
+{% load object_permissions %}
 
 {% block breadcrumb %}
     {{ block.super }}
@@ -8,11 +9,12 @@
 
 {% block pageControls %}
 <ul>
-    {% if pems.gallery.add_picture %}
+    {% can_upload user as can_upload_perm %}
+    {% if perms.gallery.add_picture or can_upload_perm %}
     <li><a href="{% url gallery_upload_images collection_slug=collection.slug %}">Upload billeder</a></li>
     {% endif %}
 
-    {% if pems.gallery.change_collection %}
+    {% if perms.gallery.change_collection %}
     <li><a href="{% url gallery_edit_collection collection.pk %}">Rediger</a></li>
     {% endif %}
 </ul>
