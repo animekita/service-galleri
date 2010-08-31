@@ -17,7 +17,7 @@ USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
-USE_L10N = True
+USE_L10N = False
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
