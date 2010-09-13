@@ -1,6 +1,6 @@
 <div id="collection-image">
 	<a href="{% if next_picture %}{{url_next}}#images{% else %}#{% endif %}">
-		<img src="{{picture.original.thumbnail}}" />
+		<img id="galleryImage" src="{{picture.original.thumbnail}}" alt="{{picture.caption}}" />
 	</a>
 
 	<div>

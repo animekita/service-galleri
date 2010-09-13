@@ -1,4 +1,5 @@
 {% extends "wide-site.html" %}
+{% load thumbnail %}
 
 {% block breadcrumb %}
     {{ block.super }}
@@ -26,11 +27,11 @@
 
 <div class="collection">
 	<a href="{% url gallery_view_collection collection.slug %}">
-	{% if collection.picture_set.all %}
-	<img src="{{collection.picture_set.all.0.original.url}}" />
+	{% ifequal collection.picture_set.all.count 0 %}
+		<i>Ingen billeder endnu</i>
 	{% else %}
-	<i>Ingen billeder endnu</i>
-	{% endif %}
+		<img src="{{ collection.picture_set.all.0.original.extra_thumbnails.small }}" alt="{{collection.name|safe}}" />
+	{% endifequal %}
 	</a>
 	<span><a href="{% url gallery_view_collection collection.slug %}">{{collection.name}}</a></span>
 </div>

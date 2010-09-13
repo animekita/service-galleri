@@ -1,5 +1,15 @@
 {% extends "gallery/view_collection.html" %}
 
+{% comment %}
+{% block extraheader %}
+{{block.super}}
+	<script src="{{ MEDIA_URL }}js/jquery.min.1.4.2.js" type="text/javascript"></script>
+	<script src="{{ MEDIA_URL }}js/jquery.ba-bbq.min.js" type="text/javascript"></script>
+	<script src="{{ MEDIA_URL }}js/ahpi.imgload.js" type="text/javascript"></script>
+	<script src="{{ MEDIA_URL }}js/gallery.js?v.0.4" type="text/javascript"></script>
+{% endblock %}
+{% endcomment %}
+
 {% url gallery_view_collection_picture picture_id=picture.pk collection_slug=collection.slug as picture_url %}
 
 {% block breadcrumb %}
@@ -10,7 +20,7 @@
 
 {% block pageControls %}{% endblock %}
 
-{% block contenthead %}<h1>{{picture.collection.name}}</h1>{% endblock %}
+{% block contenthead %}<h1 class="title">{{picture.collection.name|safe}}</h1>{% endblock %}
 
 {% block content %}
 
