@@ -9,7 +9,7 @@ def list_collections(request,
                      template_name='gallery/list_collections.html'):
 
     return render_to_response(template_name,
-                              {'collections' : Collection.objects.all(), },
+                              {'collections' : Collection.objects.all().order_by('group', '-date'), },
                               context_instance=RequestContext(request))
 
 def view_collection(request,
