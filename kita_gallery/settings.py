@@ -64,7 +64,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'uni_form',
 
-    'selvbetjening.viewhelpers.googleanalytics',
+    'selvbetjening.viewbase.googleanalytics',
 
     'kita_gallery.apps.gallery',
 )
