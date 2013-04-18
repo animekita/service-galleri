@@ -7,17 +7,17 @@
 {% endblock %}
 
 {% block extraheader %}
-<link href="{{ MEDIA_URL }}uploadify/example/css/uploadify.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{{ MEDIA_URL }}uploadify/example/scripts/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}uploadify/example/scripts/swfobject.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}uploadify/example/scripts/jquery.uploadify.v2.1.0.min.js"></script>
+<link href="{{ STATIC_URL }}uploadify/example/css/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/example/scripts/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/example/scripts/swfobject.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}uploadify/example/scripts/jquery.uploadify.v2.1.0.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#uploadify").uploadify({
-		'uploader'       : '{{ MEDIA_URL }}/uploadify/uploadify.swf',
+		'uploader'       : '{{ STATIC_URL }}/uploadify/uploadify.swf',
 		'script'         : '{% url gallery_upload_images_callback collection.slug photographer.slug %}',
-		'cancelImg'      : '{{ MEDIA_URL }}/uploadify/cancel.png',
+		'cancelImg'      : '{{ STATIC_URL }}/uploadify/cancel.png',
 		'folder'         : 'uploads',
 		'queueID'        : 'fileQueue',
 		'auto'           : true,
