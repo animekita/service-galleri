@@ -3,8 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from uni_form.helpers import FormHelper, Submit, Layout
 
-from selvbetjening.viewhelpers.forms.helpers import InlineFieldset
-from selvbetjening.viewhelpers.forms import widgets
+from selvbetjening.viewbase.forms.helpers import InlineFieldset
+from selvbetjening.viewbase.forms import widgets
 
 from models import Collection, Photographer
 
