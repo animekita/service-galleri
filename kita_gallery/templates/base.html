@@ -5,10 +5,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <title>Anime kita - nordjyllands forening for japansk populærkultur</title>
 		<link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" />
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/reset.css" />
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/base.css" />
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/cms.css" />
-        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/galleri.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cms.css" />
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/galleri.css" />
 		{% block extraheader %}{% endblock %}
     </head>
 
@@ -16,7 +16,7 @@
 	<div id="wrapper">
 		<div id="topNavBg"></div>
 		<div id="top">
-			<a href="http://www.anime-kita.dk"><img id="topLogo" src="{{ MEDIA_URL }}graphics/toplogo.png" alt="Anime Kita logo" /></a>
+			<a href="http://www.anime-kita.dk"><img id="topLogo" src="{{ STATIC_URL }}graphics/toplogo.png" alt="Anime Kita logo" /></a>
 			<div id="topNavBgFade"></div>
 			<ul id="topNav">
 				<li><a href="http://www.anime-kita.dk/">home</a></li>
