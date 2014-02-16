@@ -1,0 +1,54 @@
+#header {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#gallery {
+  line-height: 0;
+  width: 100%;
+  height: 600px;
+}
+
+#albums ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#albums ul li {
+    display: inline-block;
+    margin: 0 5px 30px 0;
+    text-align: center;
+    vertical-align: top;
+    width: 280px;
+}
+
+#albums ul li:nth-child(3n+3) {
+    margin-right: 0;
+}
+
+#albums ul li span {
+    line-height: 3em;
+}
+
+#albums ul li a img {
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in;
+    -moz-transition-property: opacity;
+    -moz-transition-duration: 0.2s;
+    -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    -o-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+  
+#albums ul li a:hover img {
+    opacity: .5;
+}
+
+#newfooter {
+  clear: both;
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+  padding-bottom: 2em;
+}

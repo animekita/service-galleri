@@ -1,0 +1,147 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Anime kita - {{ title|striptags }}</title>
+    <link rel="shortcut icon" href="http://www.anime-kita.dk/galleri/image-store/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://www.anime-kita.dk/static/dev/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.anime-kita.dk/static/dev/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.anime-kita.dk/static/dev/css/cms.css" />
+
+    <link rel="stylesheet" href="{{ theme.url }}/css/style.min.css">
+    <link rel="stylesheet" href="{{ theme.url }}/css/galleria.classic.css">
+
+</head>
+<body>
+
+<div id="wrapper">
+    <div id="topNavBg"></div>
+    <div id="top">
+        <a href="http://www.anime-kita.dk"><img id="topLogo" src="http://www.anime-kita.dk/static/dev/graphics/toplogo.png" alt="Anime Kita logo" /></a>
+        <div id="topNavBgFade"></div>
+        <ul id="topNav">
+            <li><a href="http://www.anime-kita.dk/">home</a></li>
+            <li><a href="http://www.anime-kita.dk/forum/">forum</a></li>
+            <li><a class="current" href="http://www.anime-kita.dk/galleri/">galleri</a></li>
+            <li><a href="http://www.anime-kita.dk/selvbetjening/">tilmelding</a></li>
+        </ul>
+    </div>
+
+    <div id="topContent">
+
+        <div id="header">
+        <h1 style="display: inline;"><a href="{{ index_url }}">Galleri</a></h1>
+
+        {% if breadcrumb %}
+        <h2 style="display: inline;">
+            {%- for url, title in breadcrumb -%}
+            &nbsp;&gt;&nbsp;<a href="{{ url }}">{{ title }}</a>
+            {%- if not loop.last %} » {% endif -%}
+            {% endfor -%}
+        </h2>
+        {% endif %}
+        </div>
+
+        <div id="main">
+
+            {% if albums %}
+            <div id="albums">
+                <!-- <h1>Albums</h1> -->
+                <ul>
+                    {% for album in albums %}
+                    <li><a href="{{ album.url }}">
+                        <img src="{{ album.thumb }}" class="album_thumb" alt="{{ album.name }}" title="{{ album.name }}" /></a>
+                        <span class="album_title">{{ album.title }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {% if medias %}
+
+                {% macro img_description(media) -%}
+                {%- if media.big %}<a href='{{ media.big }}'>Full size</a>{% endif %}
+                {%- if media.exif %}
+                <br>
+                {% if media.exif.iso %}ISO: {{ media.exif.iso }}, {% endif %}
+                {% if media.exif.focal %}Focal: {{ media.exif.focal }}, {% endif %}
+                {% if media.exif.exposure %}Exposure: {{ media.exif.exposure }}, {% endif %}
+                {% if media.exif.fstop %}Fstop: {{ media.exif.fstop }}{% endif %}
+                {% if media.exif.datetime %}
+                <br>Date: {{ media.exif.datetime }}
+                {% endif %}
+                {% endif %}
+                {%- endmacro %}
+
+                {% if description %}
+                <div id="description">
+                    {{ description }}
+                </div>
+                {% endif %}
+
+                <div id="gallery">
+                    {% for media in medias %}
+                    {% if media.type == "img" %}
+                    <a href="{{ media.file }}">
+                        <img src="{{ media.thumb }}" alt="{{ media.file }}"
+                             data-title="{{ media.file }}"
+                             data-description="{{ img_description(media) }}"/>
+                    </a>
+                    {% endif %}
+                    {% if media.type == "vid" %}
+                    <a href="{{ theme.url }}/img/empty.png">
+                        <img src="{{ media.thumb }}" alt="{{ media.file }}"
+                             data-layer="<video controls>
+                                       <source src='{{ media.file }}' type='video/webm' />
+                                     </video>" />
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- This is why ... -->
+        <div id="newfooter">
+            <span>Anime Kita, 2007 - 2014 &copy; All rights reserved</span
+                    ><span class="vertSeperatorMedium">|</span
+        ><a href="http://www.anime-kita.dk/om-os/kontakt/">Kontakt</a
+                ><span class="vertSeperatorMedium">|</span
+            ><a href="http://www.anime-kita.dk/databehandlingspolitik/">Databehandlingspolitik</a>
+        </div>
+
+        {% if medias %}
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+            <script>!window.jQuery && document.write(unescape('%3Cscript src="{{ theme.url }}/js/jquery-1.8.2.min.js"%3E%3C/script%3E'))</script>
+            <script src="{{ theme.url }}/js/galleria-1.2.9.min.js"></script>
+            <script src="{{ theme.url }}/js/galleria.classic.min.js"></script>
+            <script>
+                Galleria.configure({
+                    imageCrop: false,
+                    transition: "fade"
+                });
+                Galleria.run("#gallery");
+
+                Galleria.ready(function() {
+                    this.attachKeyboard({
+                        right: this.next,
+                        left: this.prev
+                    });
+                });
+
+            </script>
+        {% endif %}
+
+        {% include 'analytics.html' %}
+
+    </div>
+
+</div>
+
+</body>
+</html>
