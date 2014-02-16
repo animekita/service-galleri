@@ -45,6 +45,15 @@
     opacity: .5;
 }
 
+#collection-info-text {
+  background-color: #eef;
+  border-color: #105A89;
+  border-width: 1px 0 1px 0;
+  border-style: solid;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
 #newfooter {
   clear: both;
   display: block;

@@ -76,11 +76,19 @@
                 {% endif %}
                 {%- endmacro %}
 
-                {% if description %}
+                {% if description or 'authors' in meta %}
+		<div id="collection-info-text">
+		{% if description %}
                 <div id="description">
                     {{ description }}
                 </div>
-                {% endif %}
+		{% endif %}
+		{% if 'authors' in meta %}
+		<p>Fotografer: {{ meta.authors|join(', ') }}</>
+		{% endif %}
+		</div>
+		{% endif %}
+           
 
                 <div id="gallery">
                     {% for media in medias %}
